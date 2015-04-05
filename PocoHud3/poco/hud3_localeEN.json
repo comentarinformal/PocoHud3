@@ -237,6 +237,8 @@
     "_opt_pocoRoseHalt_desc": "Opening PocoRose would stop your movement",
     "_opt_pocoRoseKey": "POCO ROSE KEY",
     "_opt_pocoRoseKey_desc": "Keybind for PocoRose.\nDefault: B",
+	"_opt_pocoRose2ndKey": "SECOND ROSE KEY",
+	"_opt_pocoRose2ndKey_desc":"Alternate key for second PocoRose.\nDefault: N",
     "_opt_popup_desc": "Shows damages in 3D space",
     "_opt_rememberGadgetState": "REMEMBER GADGET STATE",
     "_opt_rememberGadgetState_desc": "Remembers gadget(laser, flashlight, angled sight) status between weapon swaps",
