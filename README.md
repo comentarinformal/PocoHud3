@@ -1,4 +1,6 @@
-PocoHud3
+PocoHud3 - More PocoRoses edition!
+========
+The current version of PocoHud BLT, with an alternate PocoRose, for all your voicespamming needs.
 ========
 A fork of PocoHud3 that is compatible with the [Payday 2 BLT](http://paydaymods.com/download/).
 
