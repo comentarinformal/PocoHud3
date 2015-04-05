@@ -9,6 +9,7 @@ local scheme = {
 		shuffleMusic = {'bool',FALSE,nil,'_opt_shuffleMusic_desc'},
 		silentKitShortcut = {'bool',TRUE,nil,'_opt_silentKitShortcut_desc'},
 		pocoRoseKey = {'key','b',nil,'_opt_pocoRoseKey_desc'},
+		pocoRose2ndKey = {'key','n',nil,'_opt_pocoRose2ndKey_desc'},
 		pocoRoseHalt = {'bool',FALSE,nil,'_opt_pocoRoseHalt_desc'},
 		language = {'string','EN',nil,'_opt_language_desc','language'},
 		colorPositive = {'color','YellowGreen','color','_opt_colorPositive_desc',nil,nil,2},
