@@ -277,13 +277,47 @@ function TPocoHud3:toggleRose(show)
 				self._guiFading = nil
 				menu:destroy()
 			end)
-		elseif canOpen and show and not self._guiFading then -- create
+		elseif  show and not self._guiFading then -- create
 			local gui = C.PocoMenu:new(self._ws,true)
 			self.menuGui = gui
 			gui:fadeIn()
 			local tab = gui:add('Rose')
 			C._drawRose(tab)
-		elseif not canOpen and show then
+		elseif not show then
+			-- managers.menu:post_event('menu_error')
+		end
+	end)
+	if not r then
+		self:err(_.s('ToggleRose',err))
+	end
+end
+
+function TPocoHud3:toggle2ndRose(show)
+	if self._noRose then return end
+	local C = PocoHud3Class
+	local canOpen = inGameDeep and (not self._lastSay or now()-self._lastSay > tweak_data.player.movement_state.interaction_delay / 2)
+	local r,err = pcall(function()
+		local menu = self.menuGui
+		if menu and not self._guiFading then -- hide
+			self.menuGui = nil
+			self._guiFading = true
+			if self._say then
+				if self:say(self._say,true) then
+					self._lastSay = now()
+				end
+				self._say = nil
+			end
+			menu:fadeOut(function()
+				self._guiFading = nil
+				menu:destroy()
+			end)
+		elseif  show and not self._guiFading then -- create
+			local gui = C.PocoMenu:new(self._ws,true)
+			self.menuGui = gui
+			gui:fadeIn()
+			local tab = gui:add('Rose')
+			C._draw2ndRose(tab)
+		elseif not show then
 			-- managers.menu:post_event('menu_error')
 		end
 	end)
@@ -639,7 +673,9 @@ function TPocoHud3:_updateBind()
 		end
 	end
 	local pocoRoseKey = O:get('root','pocoRoseKey')
+	local pocoRose2ndKey = O:get('root','pocoRose2ndKey')
 	Poco:Bind(self,pocoRoseKey,callback(self,self,'toggleRose',true,false),callback(self,self,'toggleRose',false,false))
+	Poco:Bind(self,pocoRose2ndKey,callback(self,self,'toggle2ndRose',true,false),callback(self,self,'toggle2ndRose',false,false))
 
 	Poco:Bind(self,14,function()
 		self:Menu(false,false)
