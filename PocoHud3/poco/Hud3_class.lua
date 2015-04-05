@@ -3278,33 +3278,114 @@ function PocoHud3Class._drawOptions(tab)
 end
 
 function PocoHud3Class._drawRose(tab)
+
 	local pnl = tab.pnl
 	local layout = {
-		{	{'_rose_whistle','whistling_attention'},	{'_rose_cable','g26'},	{'_rose_medbag','g80x_plu'},	{'_rose_shoot','g23'},	{'_rose_drill','g61'},	},
-		{	{'_rose_overrun','g68'},	{'_rose_timetogo','g17'},	{'_rose_thisway','g12'},	{'_rose_straight','g19'},	{'_rose_cantstay','g69'},	},
-		{	{'_rose_almost','g28'},	{'_rose_getout','g07'},	{'_rose_upstairs','g02'},	{'_rose_hurry','g09'},	{'_rose_alright','g92'},	},
-		{	{'_rose_letsgo','g13'},	{'_rose_left','g03'},	false,	{'_rose_right','g04'},	{'_rose_thanks','s05x_sin'},	},
-		{	{'_rose_halfway','t02x_sin'},	{'_rose_careful','g10'},	{'_rose_downstairs','g01'},	{'_rose_inside','g08'},	{'_rose_anysecond','t03x_sin'},	},
-		{	{'_rose_fewminutes','t01x_sin'},	{'_rose_down','g20'},	{'_rose_wrong','g11'},	{'_rose_defended','g16'},	{'_rose_cams','g25'},	},
-		{	false,	{'_rose_shit','g60'},	{'_rose_ammo','g81x_plu'},	{'_rose_fuck','g29'},	false,	},
-	}
+			{ 	{'Whistle','whistling_attention'}, 	{'Downstairs','g01'},		{'Upstairs','g02'}, 		{'Use Ties','g26'},			{'Almost There','g28'},		{'Hurry','g09'}, },
+			{ 	{'Hate This Drill','g22'},			{'Get down!','f02x_plu'},	{'Get Out','g07'},			{'Inside','g08'}, 			{'Straight','g19'}, 		{'This is the place','g14'},},
+			{ 	{'Careful','g10'}, 					{'Wrong Way','g11'},		{'This Way','g12'},			{'Lets Go','g13'}, 			{'We are Overrun','g68'}, 	{'Victory','g24'}, },
+			{ 	{'There','g15'}, 					{'Keep Defended','g16'}, 	{'Time to go','g17'}, 		{'Move It!','g18'}, 		{'Halfway there','t02x_sin'},{'Watch the civs','g27'},},
+			{ 	{'Grenade Out','g43'}, 				{'Drill In Place','g21'}, 	{'Up','g05'}, 				{'Shoot tem','g23'}, 		{'pager','dsp_radio_checking_1'},{'Alright','g92'}, },
+			{ 	{'Take Cams','g25'}, 				{'Left','g03'}, 			false , 					{'Right','g04'},		 	{'Oh Fuck','g29'},  		{'Cannot Stay Here','g69'},},
+			{ 	{'Flashbang!','g41x_any'}, 			{'Down','g06'}, 			{'Any Second','g67'},		{'Reviving you','s08x_sin'},{'last tie','s32x_sin'},	{'On my way', 'r02a_sin'},},
+			{	{'Gas!','g42x_any'}, 				{'Down Here','g20'}, 		{'Shit','g60'}, 			{'I got the drill','g61'},	{'Lets do it','a01x_any'},	{'Thanks','s05x_sin'},},
+			{ 	{'Need Medbag','g80x_plu'},			{'Meds Down','s02x_plu'},	{'Need Ammobag','g81x_plu'},{'Ammo Down','s01x_plu'},	{'Inspire','f36x_any'},},
+			{ 	{'Bulldozer Down','g30'},			{'Shield Down','g31x_any'},	{'Cloaker Down','g33x_any'},{'Sniper Down','g35x_any'},	{'Taser Down','g32x_any'},	},
+			
+		}
 	layout = L:parse(layout)
-	local w,h = 200,70
-	local ox,oy = pnl:w()/2 - 2*w,pnl:h()/2 - 3*h
+	local w,h = 160,70
+	local ox,oy = pnl:w()/2 - 2*w,pnl:h()/2 - 4.6*h
 	for y,row in pairs(layout) do
 		for x, obj in pairs(row) do
 			if obj then
 				local xx = ox + (x-1)*w
 				local yy = oy + (y-1)*h
-				if x == 3 then
-					yy = yy + h*0.5*(y > 4 and 1 or -1)
-				end
-				if y == 4 then
-					xx = xx + w*0.3*(x > 3 and 1 or -1)
-				end
+				
 				PocoRoseButton:new(tab,{
 					x = xx, y = yy, w=w, h=h,
-					fontSize = 20, text=obj[1]:upper(), value=obj[2]
+					fontSize = 18, text=obj[1]:upper(), value=obj[2]
+				})
+			end
+		end
+	end
+	local sPnl = pnl:panel{alpha = 0.4}
+	sPnl:gradient{
+		layer = -1,
+		gradient_points = {
+			0,
+			cl.Black,
+			1,
+			cl.Black:with_alpha(0)
+		},
+		orientation = "vertical",
+		h = pnl:h() / 3
+	}
+	sPnl:gradient{
+		layer = -1,
+		gradient_points = {
+			0,
+			cl.Black:with_alpha(0),
+			1,
+			cl.Black:with_alpha(1)
+		},
+		orientation = "vertical",
+		y = pnl:h() / 3 * 2,
+		h = pnl:h() / 3
+	}
+	sPnl:gradient{
+		layer = -1,
+		gradient_points = {
+			0,
+			cl.Black:with_alpha(1),
+			1,
+			cl.Black:with_alpha(0)
+		},
+		orientation = 'horizontal',
+		w = pnl:w() / 3
+	}
+	sPnl:gradient{
+		layer = -1,
+		gradient_points = {
+			0,
+			cl.Black:with_alpha(0),
+			1,
+			cl.Black:with_alpha(1)
+		},
+		orientation = 'horizontal',
+		x = pnl:w() / 3 * 2,
+		w = pnl:w() / 3
+	}
+	--pnl:bitmap{ texture='guis/textures/test_blur_df', render_template='VertexColorTexturedBlur3D', layer=-1, w = pnl:w(), h = pnl:h()}
+end
+
+function PocoHud3Class._draw2ndRose(tab)
+	local pnl = tab.pnl
+	local layout = {
+	{	false,											false,										false,											false,											false,},
+	{ 	{'D-ViolenceOption','gus_preplan_05'},			{'D-ILikeThat','gus_preplan_16'},			{'D-BoatInTheWater','gus_preplan_18'},			{'D-AssStandingBy','gus_preplan_13'},			{'D-WillBeHandy','gus_preplan_14'}, },
+	{ 	{'It always ends...','bdz_post_kill_taunt'},	{'Taser-ASDFGHJ','tsr_tasered'},			{'THERMAL','Play_pln_branchbank_stage1_83'},	{'Ill take this one myself','bdz_c01'},			{'Dozer-aw shit','bdz_visor_lost'}, },
+	{ 	{'Cloaker taunt-after','cloaker_taunt_after_assault'},{'Cloaker taunt-while','cloaker_taunt_during_assault'},{'WOLOLOLO','cloaker_detect_mono'},{'WOLOLOchristmas','cloaker_detect_christmas_mono'},{'WOLOstop','cloaker_detect_stop'}, },
+	{	{'Cloaker baton','clk_baton_enter'},			{'Cloaker kick','clk_kick_impact'},			{'Cloaker roundhouse','clk_roundkick'},			{'Cloaker punch','clk_punch_3p'},				{'Cloaker dropkick','clk_punch_3rd_person_3p'}, },
+	{	{'Bain-GJ','Play_pln_pdsg_01'},					{'Bain-YESS','play_pln_gen_dir_08'},		false,											{'Bain-NOO','play_pln_gen_dir_07'},				{'Bain-MOVEMOVE','play_pln_gen_urg_01'}, },
+	{	{'Bain-1','play_pln_gen_count_01'},				{'Bain-2','play_pln_gen_count_02'},			{'Bain-3','play_pln_gen_count_03'},				{'Bain-4','play_pln_gen_count_04'},				},
+	{	{'Bain-5','play_pln_gen_count_05'},				{'Bain-6','play_pln_gen_count_06'},			{'Bain-7','play_pln_gen_count_07'},				{'Bain-8','play_pln_gen_count_08'},				},
+	{	{'Teller-approve','teller_customer_dialog_approve'},{'Teller-deny','teller_customer_dialog_deny'},{'Cant be that bad','cm1_stockholm_syndrome'},{'Civ on fire','cm1_burnhurt'},				{'Civ burnt','cm1_burndeath'}, },
+	{	{'cop-burningalive','l1d_burnhurt'},			{'cop-burndeath','l1d_burndeath'},			{'cop-has a saw','l1d_ch4'},					{'cop-damn you for this','l1d_cn1'},			{'cop-fuckinghell','l1d_lk3a'},},
+	{	{'NIGHTMUSIC','diegetic_club_music'},			{'MALLMUSIC','diegetic_lounge_music'},		{'STOP ALL MUSIC','Stop_all_music'},			{'SRaid Music','kosugi_music'}, 				{'Drifting','drifting'}, },
+	}
+	layout = L:parse(layout)
+	local w,h = 160,60
+	local ox,oy = pnl:w()/2 - 2*w,pnl:h()/2 - 5.3*h
+	for y,row in pairs(layout) do
+		for x, obj in pairs(row) do
+			if obj then
+				local xx = ox + (x-1)*w
+				local yy = oy + (y-1)*h
+				
+				PocoRoseButton:new(tab,{
+					x = xx, y = yy, w=w, h=h,
+					fontSize = 18, text=obj[1]:upper(), value=obj[2]
 				})
 			end
 		end
