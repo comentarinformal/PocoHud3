@@ -286,7 +286,7 @@ function TPocoHud3:toggleRose(show)
 				self._guiFading = nil
 				menu:destroy()
 			end)
-		elseif  show and not self._guiFading then -- create
+		elseif show and not self._guiFading then -- create
 			local gui = C.PocoMenu:new(self._ws,true)
 			self.menuGui = gui
 			gui:fadeIn()
@@ -798,7 +798,9 @@ function TPocoHud3:_updatePlayers(t)
 	else
 		return
 	end
+
 	for i = 1,4 do
+
 		if self.custom_hud_enabled then
 			for _, panel in ipairs(managers.hud._teammate_panels) do
 				if panel._id == HUDManager.PLAYER_PANEL then

@@ -3277,7 +3277,6 @@ function PocoHud3Class._drawOptions(tab)
 end
 
 function PocoHud3Class._drawRose(tab)
-
 	local pnl = tab.pnl
 	local layout = {
 			{ 	{'Whistle','whistling_attention'}, 	{'Downstairs','g01'},		{'Upstairs','g02'}, 		{'Use Ties','g26'},			{'Almost There','g28'},		{'Hurry','g09'}, },
