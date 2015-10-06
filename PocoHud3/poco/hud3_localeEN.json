@@ -238,13 +238,10 @@
     "_opt_pocoRoseHalt": "STOP WHILE USING POCOROSE",
     "_opt_pocoRoseHalt_desc": "Opening PocoRose would stop your movement",
     "_opt_pocoRoseKey": "POCO ROSE KEY",
-<<<<<<< HEAD
     "_opt_pocoRoseKey_desc": "Keybind for PocoRose.\nDefault: B",
 	"_opt_pocoRose2ndKey": "SECOND ROSE KEY",
 	"_opt_pocoRose2ndKey_desc":"Alternate key for second PocoRose.\nDefault: N",
-=======
     "_opt_pocoRoseKey_desc": "Allows the player to shout commands to others.\nDefault: B",
->>>>>>> 495e981d224bc00d46a0cf2cd86d6a0db884283d
     "_opt_popup_desc": "Shows damages in 3D space",
     "_opt_rememberGadgetState": "REMEMBER GADGET STATE",
     "_opt_rememberGadgetState_desc": "Remembers gadget(laser, flashlight, angled sight) status between weapon swaps",
@@ -455,11 +452,7 @@
     "_tab_playerBottom": "Bottom Infobox",
     "_tab_playerFloat": "Overhead Infobox",
     "_tab_popup": "Damage Indicators",
-<<<<<<< HEAD
-    "_tab_root": "PocoHud3",
-=======
     "_tab_root": "Main",
->>>>>>> 495e981d224bc00d46a0cf2cd86d6a0db884283d
     "_tab_stat_day": "(DAY)",
     "_tab_stat_night": "(NIGHT)",
     "_tab_stat_perday": "Per Day",
